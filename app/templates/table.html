@@ -1,0 +1,13 @@
+{% for i in obj %}
+<div>
+    <h2>{{i.name}}</h2>
+    <p>{{i.description}}</p>
+    <a href="{% url 'update' i.id %}">Edit</a>
+    <form method="POST" action="{% url 'delete' i.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+</div>
+{% empty %}
+<p>No model found</p>
+{% endfor %}
